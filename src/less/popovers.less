@@ -1,0 +1,986 @@
+.popover {
+
+
+    .avatarBox {
+
+        display: block;
+        width: 80px;
+        height: 80px;
+        margin: 1em auto;
+        margin: 20px;
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        //        background-image: url("images/img-profile.png");
+        background-color: #D8D8D8;
+
+        &.default{
+            background-size: 132px;
+        }
+    }
+
+    border-radius: 0;
+    border-color: #d5d5d5;
+
+    // Helper
+    .padded {
+        padding: 18px;
+    }
+
+    .padded-lr {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    hr {
+        margin: 0;
+    }
+
+    &.notifications {
+        width: 321px;
+        height: 160px;
+        max-width: 321px;
+        margin-left: 10px;
+
+        > div:nth-child(2) {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            width: 321px;
+            height: 160px;
+            position: relative;
+            left: -2px;
+
+            > div {
+                height: 80px;
+                padding: 25px;
+                border-bottom: 1px solid @dividergray;
+                transition: .15s all;
+
+                &:last-child {
+                    border: none;
+                }
+
+                &:hover {
+                    border-bottom: 3px solid @gray;
+                    background-color: #fdfdfd;
+                    cursor: pointer;
+
+                    p {
+                        font-weight: 600;
+                    }
+
+                    span {
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            p {
+                line-height: 1;
+                margin-bottom: 5px;
+
+                &:first-child {
+                    // Task name
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+
+                &:nth-child(2) {
+                    // Subject / date
+                    font-size: 12px;
+                    color: #888;
+                }
+            }
+
+        }
+    }
+
+    &.add {
+        width: 470px;
+        max-width: 470px;
+        line-height: 1.44;
+        margin-left: 25px;
+
+        &.blue {
+            &:before {
+                width: 470px;
+                position: relative;
+                top: -1px;
+                left: -2px;
+                height: 59px;
+                background-color: #07467f;
+                content: '';
+                display: block;
+            }
+
+            .arrow {
+                &:after {
+                    border-bottom-color: #07467f;
+                }
+            }
+
+
+        }
+
+        .assignment {
+            .header {
+                position: absolute;
+                top: 19px;
+                left: 0;
+                font-size: 14px;
+                color: @white;
+                padding-left: 18px;
+                padding-right: 18px;
+                width: 100%;
+
+                p, a {
+                    display: inline-block;
+                    width: 50%;
+                    color: @white;
+
+                    &:nth-child(2) {
+                        margin-left: -0.29em;
+                    }
+                }
+
+                a {
+                    text-align: right;
+                    color: @cornflower;
+                }
+            }
+
+            .subject-wrapper {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .subject {
+                width: 100%;
+                text-align: justify;
+                height: 68px;
+                overflow: hidden;
+
+                &:after {
+                    content: '';
+                    width: 100%;
+                    display: inline-block;
+                }
+
+                button {
+                    width: 49%;
+                }
+
+                .dropdown-menu {
+                    width: 211px;
+
+                    li {
+                        height: 40px;
+                        position: relative;
+                        margin-bottom: 1px;
+
+                        a {
+                            height: 40px;
+                            line-height: 40px;
+                            padding-top: 0;
+                            padding-bottom: 0;
+                            padding-left: 25px;
+                            transition: .15s background-color;
+
+                            &:hover {
+                                background-color: @lightergray;
+                            }
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+
+                        div {
+                            height: 100%;
+                            width: 10px;
+                            position: absolute;
+                            left: 2px;
+                        }
+                    }
+                }
+            }
+
+            .due {
+                height: 60px;
+                line-height: 60px;
+                font-size: 13px;
+
+                b {
+                    font-size: 15px;
+                }
+            }
+
+            .name {
+                height: 80px;
+
+                div {
+                    position: relative;
+                    height: 80px;
+
+                    input {
+                        line-height: 1.44;
+                        border: 0;
+                        border-bottom: 1px solid #c9c9c9;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        width: 100%;
+                        height: 40px;
+
+                        .vertical-center();
+                    }
+                }
+            }
+
+            .notes {
+                .switch(@height: 100px; @mh-expanded: 100px; @mh-collapsed: 55px);
+
+                div {
+                    position: relative;
+                    height: 100%;
+
+                    > a {
+                        position: absolute;
+                        top: 0;
+                        font-size: 14px;
+                        font-weight: 800;
+                        color: @black;
+
+                        i {
+                            font-size: 18px;
+                            position: relative;
+                            top: 1px;
+                            transition: .25s transform;
+                        }
+                    }
+
+                    input {
+                        line-height: 1.44;
+                        border: 0;
+                        border-bottom: 1px solid #c9c9c9;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        width: 100%;
+                        height: 40px;
+                        max-height: 40px;
+                        position: absolute;
+                        bottom: 0;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            .plans {
+                .switch( @mh-expanded: 300px; @mh-collapsed: 60px );
+
+                position: relative;
+                padding-top: 18px;
+                padding-bottom: 20px;
+                transition: .25s max-height;
+                overflow: hidden;
+
+                > a {
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: @black;
+
+                    i {
+                        font-size: 18px;
+                        position: relative;
+                        top: 1px;
+                        transition: .25s transform;
+                    }
+                }
+
+                > div {
+                    height: 183px;
+                    overflow: scroll;
+                    line-height: 55px;
+
+                    .table {
+                        z-index: -1;
+                        margin-top: 28px;
+                        font-size: 14px;
+
+                        tr {
+                            height: 55px;
+
+                            td {
+                                border: 0;
+                                vertical-align: middle;
+
+                                &:first-child {
+                                    padding-left: 18px;
+                                }
+
+                                &:last-child {
+                                    padding-right: 18px;
+
+                                    a {
+                                        font-size: 24px;
+                                        float: right;
+                                    }
+                                }
+
+                                a {
+                                    color: @blue;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .graded {
+                padding-top: 20px;
+
+                .flex-center();
+
+                > p:first-child {
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: @black;
+                    height: 25px;
+                    line-height: 25px;
+                    width: 50%;
+                    margin-bottom: 50px;
+                }
+
+                .ai-checked {
+                    width: 50%;
+                    height: 25px;
+                    position: relative;
+                    margin-bottom: 50px;
+
+                    svg {
+                        position: absolute;
+                        right: 0;
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+
+                .recommended-circle {
+                    width: 80px;
+                    height: 80px;
+                    font-size: 10px;
+                    text-align: center;
+                    position: relative;
+                    line-height: 80px;
+
+                    p {
+                        .vertical-center();
+
+                        font-size: 24px;
+                        font-weight: 500;
+                        color: @blue;
+                    }
+
+                    svg {
+                        position: absolute;
+                        left: 0;
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+
+                .mygoal {
+
+                    margin: 0;
+                    text-align: center;
+                    position: relative;
+                    font-size: 10px;
+                    height: 80px;
+
+
+                    > div:first-child {
+                        height: 70px;
+                        width: 63px;
+                        position: absolute;
+                        left: 140px;
+                        top: -45px;
+                        z-index: 1;
+
+                        p {
+                            .vertical-center (@top: 15px;);
+
+                            color: @white;
+                            font-size: 24px;
+                        }
+
+                        svg {
+                            height: 70px;
+                        }
+                    }
+                    > div:nth-child(2) {
+                        width: 270px;
+                        height: 30px;
+
+                        svg {
+                            height: 30px;
+                            background: linear-gradient(to right, #e22802, #fece26);
+                            width: 242px;
+
+                            .vertical-center();
+                        }
+                    }
+                }
+
+                .actual-circle {
+                    width: 80px;
+                    height: 80px;
+                    position: relative;
+                    line-height: 80px;
+                    font-size: 10px;
+                    text-align: center;
+                    cursor: pointer;
+
+                    svg {
+                        position: absolute;
+                        right: 0;
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    div {
+                        width: 40px;
+                        height: 40px;
+
+                        .vertical-center();
+
+                        svg {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                }
+
+                .recommended-label, .mygoal-label, .actual-label  {
+                    font-size: 10px;
+                    font-weight: 500;
+                    text-align: center;
+                    margin-top: 5px;
+                }
+
+                .recommended-label, .actual-label {
+                    width: 80px;
+                }
+
+                .mygoal-label {
+                    width: 270px;
+                }
+
+                .actual-label {
+                    padding-left: 4px;
+                }
+            }
+
+            .documents {
+                .switch( @height: 118px; @mh-expanded: 118px; @mh-collapsed: 55px; );
+
+                a {
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: @black;
+
+                    i {
+                        font-size: 18px;
+                        position: relative;
+                        top: 1px;
+                        transition: .25s transform;
+                    }
+                }
+
+                > div {
+                    .flex-center();
+
+                    margin-top: 13px;
+
+                    input {
+                        width: 65%;
+                        height: 34px;
+                        border: 1px solid #c4c4c4;
+                        padding: 5px 7px;
+                        font-size: 14px;
+                    }
+
+                    button:nth-child(2) {
+                        width: 11%;
+                        position: relative;
+
+                        svg {
+                            width: 25px;
+                            height: 25px;
+
+                            .vertical-center();
+                        }
+                    }
+
+                    button:nth-child(3) {
+                        width: 20%;
+                    }
+                }
+
+            }
+
+            .alert {
+                .switch( @height: 118px; @mh-expanded: 118px; @mh-collapsed: 55px; );
+
+                a {
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: @black;
+
+                    i {
+                        font-size: 18px;
+                        position: relative;
+                        top: 1px;
+                        transition: .25s transform;
+                    }
+                }
+
+                > div {
+                    .flex-center();
+                    margin-top: 13px;
+
+                    button.btn-dropdown {
+                        width: 78%;
+                        height: 34px;
+                        border: 1px solid #c4c4c4;
+                        padding: 5px 7px;
+                        font-size: 14px;
+                    }
+
+                    button.set {
+                        width: 20%;
+                        position: relative;
+                    }
+
+                    .dropdown-menu {
+                        width: 334px;
+
+                        li {
+                            height: 40px;
+                            position: relative;
+                            margin-bottom: 1px;
+
+                            a {
+                                height: 40px;
+                                line-height: 40px;
+                                padding-top: 0;
+                                padding-bottom: 0;
+                                padding-left: 25px;
+                                font-weight: 400;
+                                transition: .15s background-color;
+
+                                &:hover {
+                                    background-color: @lightergray;
+                                }
+
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+
+                            div {
+                                height: 100%;
+                                width: 10px;
+                                position: absolute;
+                                left: 2px;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .ai-actions {
+                .flex-center();
+
+                padding-left: 18px;
+                padding-right: 18px;
+                margin-top: 25px;
+                margin-bottom: 17px;
+
+                :first-child {
+                    width: 20.5%;
+                }
+
+                :nth-child(2) {
+                    width: 20%;
+                }
+
+                :nth-child(3) {
+                    width: 35%;
+                    align-self: flex-end;
+                }
+
+                :nth-child(4) {
+                    width: 20.5%;
+                }
+            }
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-bottom: 0 0 10px;
+            font-weight: 600;
+        }
+
+        .buttons {
+            text-align: justify;
+            height: 44px;
+
+            button {
+                display: inline-block;
+                width: 140px;
+            }
+
+            &:after {
+                content: '';
+                width: 100%;
+                display: inline-block;
+            }
+        }
+
+        .reminder {
+            .name {
+                height: 80px;
+
+                div {
+                    position: relative;
+                    height: 80px;
+
+                    input {
+                        line-height: 1.44;
+                        border: 0;
+                        border-bottom: 1px solid #c9c9c9;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        width: 100%;
+                        height: 40px;
+
+                        .vertical-center();
+
+                    }
+                }
+            }
+
+            hr.pre-time {
+                margin-bottom: 10px;
+            }
+
+            .time {
+                > div {
+                    .flex-center();
+
+                    p {
+                        font-size: 14px;
+                        font-weight: 600;
+                        margin-bottom: 20px;
+
+                        &.starts, &.ends {
+                            width: 15%;
+                        }
+
+                        &.repeats-every {
+                            width: 30%;
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    .date {
+                        width: 40%;
+                        font-weight: 400;
+                    }
+
+                    .date-dropdown {
+                        width: 45%;
+                        margin-bottom: 20px;
+                        background-position: 90.5% 50%;
+                    }
+
+                    .repeats-every-button {
+                        width: 70%;
+                        margin-bottom: 10px;
+                        background-position: 94% 50%;
+                    }
+
+                    .dropdown-menu {
+                        width: 193px;
+
+                        li {
+                            height: 40px;
+                            position: relative;
+                            margin-bottom: 1px;
+
+                            a {
+                                height: 40px;
+                                line-height: 40px;
+                                padding-top: 0;
+                                padding-bottom: 0;
+                                padding-left: 25px;
+                                transition: .15s background-color;
+
+                                &:hover {
+                                    background-color: @lightergray;
+                                }
+
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+
+                            div {
+                                height: 100%;
+                                width: 10px;
+                                position: absolute;
+                                left: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .alert {
+                .switch( @height: 100px; @mh-expanded: 100px; @mh-collapsed: 55px; );
+
+                margin-bottom: 0;
+
+                > a {
+                    //position: absolute;
+                    //top: 0;
+                    font-size: 14px;
+                    font-weight: 800;
+                    color: @black;
+
+                    i {
+                        font-size: 18px;
+                        position: relative;
+                        top: 1px;
+                        transition: .25s transform;
+                    }
+                }
+            }
+
+            .add-reminder {
+                float: right;
+                margin-right: 18px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .plan {
+            .name {
+                height: 80px;
+
+                div {
+                    position: relative;
+                    height: 80px;
+
+                    input {
+                        line-height: 1.44;
+                        border: 0;
+                        border-bottom: 1px solid #c9c9c9;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        width: 100%;
+                        height: 40px;
+
+                        .vertical-center();
+
+                    }
+                }
+            }
+
+            .course {
+                width: 100%;
+                text-align: justify;
+                height: 68px;
+                overflow: hidden;
+
+                &:after {
+                    content: '';
+                    width: 100%;
+                    display: inline-block;
+                }
+
+                button {
+                    width: 100%;
+                    background-position: 96% 50%;
+                }
+
+                .dropdown-menu {
+                    width: 430px;
+
+                    li {
+                        height: 40px;
+                        position: relative;
+                        margin-bottom: 1px;
+
+                        a {
+                            height: 40px;
+                            line-height: 40px;
+                            padding-top: 0;
+                            padding-bottom: 0;
+                            padding-left: 25px;
+                            transition: .15s background-color;
+
+                            &:hover {
+                                background-color: @lightergray;
+                            }
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+
+                        div {
+                            height: 100%;
+                            width: 10px;
+                            position: absolute;
+                            left: 2px;
+                        }
+                    }
+                }
+            }
+
+            .timesaweek {
+                .flex-center();
+
+                height: 32px;
+                position: relative;
+                margin-top: 4px;
+                margin-bottom: 20px;
+
+                p {
+                    width: 25%;
+                    margin-bottom: 0;
+                    height: 32px;
+                    line-height: 32px;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                ul {
+                    width: 75%;
+                    list-style: none;
+                    padding-left: 0;
+                    margin-bottom: 0;
+                    position: relative;
+                    right: -8px;
+
+                    li {
+                        float: left;
+                        cursor: pointer;
+                        font-size: 12px;
+                        width: 45px;
+                        height: 32px;
+                        line-height: 32px;
+                        text-align: center;
+                        border-top: 1px solid #c4c4c4;
+                        border-bottom: 1px solid #c4c4c4;
+                        border-left: 1px solid #c4c4c4;
+                        transition: .15s background-color;
+
+                        &:last-child {
+                            border-right: 1px solid #c4c4c4;
+                        }
+
+                        &.day-selected {
+                            background-color: @cornflower;
+                            color: @white;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            .duration {
+                div {
+                    display: -webkit-flex;
+                    display: flex;
+
+                    -webkit-align-items: center;
+                    align-items: center;
+
+                    position: relative;
+
+                    p {
+                        font-size: 14px;
+                        font-weight: 600;
+                        height: 32px;
+                        line-height: 32px;
+                        margin: 0 10px 0 0;
+
+                        &.end-label {
+                            position: relative;
+                            left: 22px;
+                        }
+                    }
+
+                    button {
+                        &.start {
+                            width: 98px;
+                            background-position: 80% 50%;
+                        }
+
+                        &.end {
+                            width: 204px;
+                            left: 20px;
+                            position: relative;
+                            background-position: 91% 50%;
+                        }
+                    }
+
+                    .dropdown-menu {
+                        width: 204px;
+
+                        li {
+                            height: 40px;
+                            position: relative;
+                            margin-bottom: 1px;
+
+                            a {
+                                height: 40px;
+                                line-height: 40px;
+                                padding-top: 0;
+                                padding-bottom: 0;
+                                padding-left: 25px;
+                                transition: .15s background-color;
+
+                                &:hover {
+                                    background-color: @lightergray;
+                                }
+
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+
+                            div {
+                                height: 100%;
+                                width: 10px;
+                                position: absolute;
+                                left: 2px;
+                            }
+                        }
+                    }
+                }
+
+                .add-study-plan {
+                    float: right;
+                    margin: 20px 0 25px;
+                }
+            }
+        }
+    }
+}

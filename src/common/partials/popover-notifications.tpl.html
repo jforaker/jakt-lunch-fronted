@@ -1,0 +1,14 @@
+<div class="popover notifications">
+    <div class="arrow"></div>
+
+    <div>
+        <div ng-repeat="notification in notifications">
+            <p>{{ notification.title }}</p>
+
+            <p>
+                <span>{{ notification.subject }}</span>
+                <span>{{ notification.date }}</span>
+            </p>
+        </div>
+    </div>
+</div>

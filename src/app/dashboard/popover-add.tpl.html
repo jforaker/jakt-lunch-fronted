@@ -1,0 +1,20 @@
+<form class="form-login">
+    <h2 class="form-login-heading">Add a new restaurant</h2>
+    <div class="login-wrap">
+        <input ng-model="newRestaurant.name" type="text" placeholder="Some restaurant" class="form-control" />
+        <br />
+        <input ng-model="newRestaurant.type_of_food" type="text" placeholder="What kind(s) of food?" class="form-control"/>
+        <br />
+        <input ng-model="newRestaurant.value" type="text" placeholder="what is the value factor (0-10)" class="form-control"/>
+        <br />
+        <input ng-model="newRestaurant.cash_only" type="text" placeholder="Cash only?  (true or false)" class="form-control"/>
+        <br />
+        <input ng-model="newRestaurant.health" type="text" placeholder="is it healthy? (0-10)" class="form-control" />
+        <br />
+        <input ng-model="newRestaurant.proximity_to_office" type="text" placeholder="how close is it to the office? (0-10)" class="form-control"/>
+        <br />
+        <!--<input ng-model="newRestaurant.logo" type="text" placeholder="logo (screenshot url only please)" />-->
+        <!--<br />-->
+        <button type="submit" class="btn btn-theme btn-block add-rest" ng-click="submitNewRestaurant(newRestaurant)"><i class="fa fa-plus-circle"></i> Submit</button>
+    </div>
+</form>

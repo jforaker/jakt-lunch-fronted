@@ -1,0 +1,160 @@
+ai-show-hide {
+    > div {
+	    cursor: pointer;
+	    display: inline-block;
+
+	    span {
+	        display: inline-block;
+	        vertical-align: middle;
+	        height: 20px;
+	        width: 39px;
+	    }
+
+	    > div {
+	        display: inline-block;
+	        vertical-align: middle;
+	        height: 28px;
+	    }
+
+	    svg {
+	        width: 23px;
+			height: 23px;
+			vertical-align: middle;
+			transition: .25s transform;
+
+			path {
+				fill: #4b4b4b;
+			}
+
+			&.right {
+				transform: rotate(-90deg);
+			}
+	    }
+	}
+}
+
+div[ai-section] {
+	overflow: hidden;
+
+	transition: all .5s ease;
+	max-height: 500px;
+
+	&.ai-hidden {
+		max-height: 0;
+		opacity: 0;
+	}
+}
+
+.bg-gold {
+	background-color: @gold;
+}
+
+.bg-cornflower {
+	background-color: @cornflower;
+}
+
+.bg-green {
+	background-color: @green;
+}
+
+.bg-darkblue {
+	background-color: @darkblue;
+}
+
+.bg-darkblue-important {
+	background-color: @darkblue !important;
+}
+
+.vertical-center(@top: 0; @right: 0; @bottom: 0; @left: 0;) {
+	position: absolute;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+	margin: auto;
+}
+
+.flex-center() {
+	display: -webkit-flex;
+	display: flex;
+
+    -webkit-align-items: center;
+    align-items: center;
+
+	-webkit-justify-content: space-between;
+    justify-content: space-between;
+
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+}
+
+.switch( @height: auto; @mh-expanded; @mh-collapsed;) {
+    height: @height;
+    max-height: @mh-expanded;
+    transition: .25s max-height;
+
+    &.ai-hidden {
+        max-height: @mh-collapsed;
+
+        i {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.plr(@val) {
+    padding-left: @val;
+    padding-right: @val;
+}
+
+.svg-hidden {
+    svg {
+        height: 0;
+    }
+}
+
+.am-fade {
+  -webkit-animation-duration: 0.05s;
+  animation-duration: 0.05s;
+}
+
+.circle-image(@size){
+    background-repeat: no-repeat;
+    background-position: 0px 11%;
+    background-size: 100% auto;
+    background-size: cover;
+    width: @size;
+    height: @size;
+    border-radius: 50%;
+}
+.notifications {
+    .container {
+        padding: 0;
+        top: 120px;
+
+        .glyphicon {
+            display: none;
+        }
+
+        .success {
+            background-color: #e84f36;
+            height: 93px;
+            line-height: 93px;
+            -webkit-animation: fadeIn 1s ease .2s 1 both;
+            -moz-animation: fadeIn 1s ease .2s 1 both;
+            animation: fadeIn 1s ease .2s 1 both;
+
+        }
+    }
+}
+
+svg.plus-btn, svg.x-btn  {
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+}
+
+INPUT{
+    color: @darkgray !important;
+}

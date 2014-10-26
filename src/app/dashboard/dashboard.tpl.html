@@ -1,0 +1,122 @@
+<header class="header black-bg">
+    <a href class="logo"><b>LUNCH APP</b></a>
+
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout" href ng-click="handleSignOutBtnClick()">Logout</a></li>
+        </ul>
+    </div>
+
+    <div style="width: 500px" ng-show="!user.signedIn">
+        <ng-include src="'user/login.tpl.html'"></ng-include>
+    </div>
+
+    <div style="width: 500px" ng-show="!user.signedIn">
+        <ng-include src="'user/signup.tpl.html'"></ng-include>
+    </div>
+
+</header>
+
+
+<section id="dashboard" ng-show="user.signedIn">
+    <div class="main-container">
+
+    <div class="row">
+        <br><br><br>
+
+            <!--<div><pre>{{eventNotifications | json}}</pre></div>-->
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>RESTAURANTS</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="height: 0px;width: 100%">
+                            <a href class="icon-add" ai-popover template="dashboard/popover-add.tpl.html" placement="">
+                                <i class="fa fa-plus-circle" style="font-size: 35px;"></i>  <h1 style="display: inline-block">Add new restaurant</h1>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-repeat="activity in activities" ng-animate=" 'animate' ">[{{activity.timestamp | date:'mediumTime'}}]{{activity.message}}</div>
+            <div class="col-lg-9 col-md-9 main-chart">
+                <div class="row">
+                    <div style="width: 200px; margin: 20px" masonry masonry-options="{ transitionDuration: '0.4s', isFitWidth:true }" item-selector=".card" class="masonry" ng-cloak>
+
+                        <!-- restaurant PANEL -->
+                        <div class="card mb" masonry-brick ng-repeat="restaurant in restaurants track by $index" ng-cloak>
+                            <div class="weather-2 pn">
+                                <div class="weather-2-header">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6">
+                                            <p>{{restaurant.name}} - count</p>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 goright">
+                                            <p class="small">{{date | date:'MMMM d, yyyy'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row centered">
+                                    <img ng-src="http://lorempixel.com/100/100/food/{{$index}}" class="img-circle" width="120">
+                                </div>
+                                <div class="row data">
+                                    <div class="col-sm-6 col-xs-6 goleft">
+                                        <h4><b><i class="fa fa-cutlery"></i>&nbsp;&nbsp;{{ restaurant.type_of_food }}</b></h4>
+                                        <h6><i class="fa fa fa-ambulance"></i>&nbsp;&nbsp;Health factor: {{ restaurant.health }}</h6>
+                                        <h6><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Proximity: {{ restaurant.proximity_to_office }}</h6>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 goright">
+                                        <a href><h5 ng-click="upvote(restaurant.id)"><i class="fa fa-thumbs-up fa-2x"></i></h5></a>
+                                        <h6><i class="fa fa-dollar"></i>&nbsp;&nbsp;Value: {{ restaurant.value }}</h6>
+                                        <h5><i class="fa fa-money"></i>&nbsp;&nbsp;Cash only? {{ restaurant.cash_only }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-3 ds">
+                <!-- VOTES -->
+                <h3>{{eventNotifications_count}} VOTES</h3>
+                <div style="max-height: 700px;overflow-y: scroll;">
+                    <div class="desc" ng-repeat="notification in eventNotifications | limitTo: 50">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p ng-show="notification.voted_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
+                                <a href>{{notification.voted_by}}</a> voted for {{notification.restaurant.name}}<br/>
+                            </p>
+                            <p ng-show="notification.added_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
+                                <a href>{{notification.added_by}}</a> added {{notification.restaurant.name}}<br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 ds">
+                <!-- TEAM ONLINE SECTION -->
+                <h3>TEAM JAKT</h3>
+                <div class="desc" ng-repeat="user in userList track by $index" ng-cloak>
+                    <div class="thumb">
+                        <img class="img-circle" ng-src="http://fillmurray.com/45/{{($index + 1 * 10) + 30}}" width="45px" height="45px" align="">
+                    </div>
+                    <div class="details">
+                        <p class="name"><a href="#">{{user.email}}</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div><! --/row -->
+    </div>
+</section>
+
