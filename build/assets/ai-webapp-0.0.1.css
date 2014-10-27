@@ -8075,7 +8075,7 @@ ul.top-menu  > li  > a:focus {
 .card.loaded {
   display: block;
   min-width: 335px;
-  min-height: 335px;
+  min-height: 200px;
   margin-right: 10px;
   margin-top: 10px;
 }
