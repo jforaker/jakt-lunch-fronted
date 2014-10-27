@@ -29,7 +29,6 @@ angular.module( 'ai', [
 
     .config( function myAppConfig ( $locationProvider, $popoverProvider, $stateProvider, $urlRouterProvider, $authProvider, PusherServiceProvider ) {
         $urlRouterProvider.otherwise( '/dashboard' );
-        $locationProvider.html5Mode(true);
 
         angular.extend($popoverProvider.defaults, {
             animation: 'am-fade',
@@ -37,7 +36,7 @@ angular.module( 'ai', [
         });
 
         $authProvider.configure({
-            apiUrl: 'http://localhost:3000/api',  //'https://jakt-lunch.herokuapp.com/api'
+            apiUrl: 'https://jakt-lunch.herokuapp.com/api',  //'http://localhost:3000/api',  //
             handleLoginResponse: function(response) {
                 return response.data;
             },
