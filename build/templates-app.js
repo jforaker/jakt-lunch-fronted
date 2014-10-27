@@ -97,9 +97,9 @@ app.run(["$templateCache", function($templateCache) {
     "            <div class=\"col-lg-9 col-md-9\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div masonry\n" +
-    "                         masonry-options=\"{ transitionDuration: '0.4s', isFitWidth:true }\"\n" +
+    "                         masonry-options=\"{ transitionDuration: '0.4s' }\"\n" +
     "                         item-selector=\".card\"\n" +
-    "                         class=\"masonry\">\n" +
+    "                         class=\"masonry col-sm-12\">\n" +
     "\n" +
     "                        <!-- restaurant PANEL -->\n" +
     "                        <div class=\"card mb\" masonry-brick ng-repeat=\"restaurant in restaurants track by $index\" ng-cloak>\n" +
