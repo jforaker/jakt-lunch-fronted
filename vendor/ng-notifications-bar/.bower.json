@@ -1,0 +1,44 @@
+{
+  "name": "ng-notifications-bar",
+  "version": "0.0.1",
+  "homepage": "https://github.com/alexanderbeletsky/ng-notifications-bar",
+  "authors": [
+    "alexanderbeletsky <alexander.beletsky@gmail.com>"
+  ],
+  "description": "Angular.js component for stylish and flexible application notifications.",
+  "main": "dist/ngNotificationsBar.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "angular",
+    "angularjs",
+    "notifications",
+    "bar",
+    "component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.25",
+    "hmps-animate-scss": "~1.0.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.25"
+  },
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "4b1f68c5896baa6dc4f94e7d57ca2ffe64ea311d"
+  },
+  "_source": "git://github.com/alexanderbeletsky/ng-notifications-bar.git",
+  "_target": "~0.0.1",
+  "_originalSource": "ng-notifications-bar"
+}
