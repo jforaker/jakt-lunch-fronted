@@ -35,7 +35,7 @@ app.run(["$templateCache", function($templateCache) {
     "\n" +
     "            <!--<div><pre>{{eventNotifications | json}}</pre></div>-->\n" +
     "\n" +
-    "            <div class=\"col-sm-9\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col-md-6\">\n" +
     "                        <h1>RESTAURANTS</h1>\n" +
