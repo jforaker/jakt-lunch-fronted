@@ -114,7 +114,7 @@ app.run(["$templateCache", function($templateCache) {
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row centered\">\n" +
-    "                                    <img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">\n" +
+    //"                                    <img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">\n" +
     "                                </div>\n" +
     "                                <div class=\"row data\">\n" +
     "                                    <div class=\"col-sm-6 col-xs-6 goleft\">\n" +
