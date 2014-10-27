@@ -30,8 +30,12 @@ angular.module( 'ai.dashboard', [
         });
     })
 
-    .controller( 'DashboardCtrl', function DashboardController( $scope, rests, Restaurants, $auth, Pusher, userList ) {
+    .controller( 'DashboardCtrl', function DashboardController( $scope, $timeout, $rootScope, rests, Restaurants, $auth, Pusher, userList ) {
 
+        $scope.showSignup = false;
+        $scope.showSignupTrue = function () {
+            $scope.showSignup = !$scope.showSignup;
+        };
         $scope.newRestaurant = {};
         $scope.restaurants = rests;
 
@@ -45,7 +49,7 @@ angular.module( 'ai.dashboard', [
 
         $scope.submitNewRestaurant = function (d) {
             return Restaurants.addNew(d).success(function(data) {
-                console.log('data from post', data);
+                console.log('data from add new', data);
                 $scope.restaurants = data;
             });
         };
@@ -55,10 +59,13 @@ angular.module( 'ai.dashboard', [
                 .then(function(resp) {
                     return console.log('resp SIGNUP =', resp);
                 })
-                .catch(function(resp) {
-                    // handle error response
-                });
+                .catch(function () {
+                    
+                })
         };
+        $rootScope.$on("auth:registration-email-success", function (data) {
+            $scope.user.signedIn = true;
+        });
 
         $scope.handleLoginBtnClick = function() {
             $auth.submitLogin($scope.loginForm)
@@ -94,6 +101,8 @@ angular.module( 'ai.dashboard', [
             console.log('votes:updated event notification', notification);
             $scope.eventNotifications_count++;
             $scope.eventNotifications.unshift(notification);
+            viewCount(notification.restaurant.id);
+            chartData.pushData(notification.restaurant.id, notification.vote);
         });
 
         /*Restaurants*/
@@ -111,15 +120,79 @@ angular.module( 'ai.dashboard', [
         $scope.$on('$destroy', function () {
             Pusher.unsubscribe('votes');
             console.log('Unsubscribed from votes');
-            Pusher.unsubscribe('activities');
-            console.log('Unsubscribed from activities');
+            Pusher.unsubscribe('restaurants');
+            console.log('Unsubscribed from restaurants');
         });
+
+        var viewCount = function (id) {
+            console.log('id =', id);
+            angular.forEach($scope.restaurants, function (rest) {
+                if(rest.id == id){
+                    rest.votes.push(id);
+                }
+            });
+
+        };
 
         $scope.upvote = function (id) {
             return Restaurants.upvote(id).then(function(data) {
                 console.log('data from upvote', data);
             });
-        }
+        };
+
+        $scope.downvote = function (id) {
+            return Restaurants.downvote(id).then(function(data) {
+                console.log('data from downvote', data);
+            });
+        };
+
+        $scope.config = {
+            title: 'Restaurants',
+            tooltips: false,
+            labels: true,
+            "legend": {
+                "display": true,
+                "position": "right"
+            },
+            "innerRadius": 0,
+            "lineLegend": "lineEnd"
+            
+        };
+
+        var chartData = {
+            getRestaurants: function () {
+                var obj = {};
+                obj.objects = function () {
+                    var arr = [];
+                    angular.forEach($scope.restaurants, function (rest) {
+                        arr.push({
+                            x: rest.name,
+                            y: []
+                        })
+                    });
+                    console.log('arr ', arr);
+                    return arr;
+                };
+                obj.series = function () {
+                    var arr = [];
+                    angular.forEach($scope.restaurants, function (rest) {
+                        arr.push(rest.name)
+                    });
+                    console.log('series ', arr);
+                    return arr;
+                };
+                return obj;
+            },
+            pushData: function (id, vote) {
+                $scope.data.data[id - 1].y.splice(0, 1, vote);
+                console.log('$scope.data.data[0].y ', $scope.data.data);
+            }
+        };
+
+        $scope.data = {
+            series: chartData.getRestaurants().series(),
+            data: chartData.getRestaurants().objects()
+        };
     })
 
 
@@ -129,6 +202,9 @@ angular.module( 'ai.dashboard', [
         rest.all = [];
         rest.upvote = function (id) {
             return $http.put(url + '/' + id + '/upvote');
+        };
+        rest.downvote = function (id) {
+            return $http.put(url + '/' + id + '/downvote');
         };
         rest.getAll = function () {
             return $http.get(url);

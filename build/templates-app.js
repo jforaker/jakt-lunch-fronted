@@ -5,33 +5,37 @@ app.run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<header class=\"header black-bg\">\n" +
     "    <a href class=\"logo\"><b>LUNCH APP</b></a>\n" +
-    "\n" +
     "    <div class=\"top-menu\">\n" +
     "        <ul class=\"nav pull-right top-menu\">\n" +
-    "            <li><a class=\"logout\" href ng-click=\"handleSignOutBtnClick()\">Logout</a></li>\n" +
+    "            <li><a ng-hide=\"!user.signedIn\" class=\"logout\" href ng-click=\"handleSignOutBtnClick()\">Logout</a></li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
-    "\n" +
-    "    <div style=\"width: 500px\" ng-show=\"!user.signedIn\">\n" +
-    "        <ng-include src=\"'user/login.tpl.html'\"></ng-include>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div style=\"width: 500px\" ng-show=\"!user.signedIn\">\n" +
-    "        <ng-include src=\"'user/signup.tpl.html'\"></ng-include>\n" +
-    "    </div>\n" +
-    "\n" +
     "</header>\n" +
     "\n" +
+    "<div ng-show=\"!user.signedIn\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-6\">\n" +
+    "            <div style=\"width: 500px\">\n" +
+    "                <ng-include src=\"'user/login.tpl.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-md-6\">\n" +
+    "            <div>\n" +
+    "                <ng-include src=\"'user/signup.tpl.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
     "<section id=\"dashboard\" ng-show=\"user.signedIn\">\n" +
     "    <div class=\"main-container\">\n" +
-    "\n" +
-    "    <div class=\"row\">\n" +
-    "        <br><br><br>\n" +
+    "        <div class=\"row\" style=\"margin-left: 0;margin-right: 0\">\n" +
+    "            <br><br><br>\n" +
     "\n" +
     "            <!--<div><pre>{{eventNotifications | json}}</pre></div>-->\n" +
     "\n" +
-    "            <div class=\"col-sm-12\">\n" +
+    "            <div class=\"col-sm-9\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col-md-6\">\n" +
     "                        <h1>RESTAURANTS</h1>\n" +
@@ -46,21 +50,66 @@ app.run(["$templateCache", function($templateCache) {
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div ng-repeat=\"activity in activities\" ng-animate=\" 'animate' \">[{{activity.timestamp | date:'mediumTime'}}]{{activity.message}}</div>\n" +
-    "            <div class=\"col-lg-9 col-md-9 main-chart\">\n" +
+    "            <div class=\"col-lg-3 col-md-3 ds pull-right\">\n" +
+    "                <!-- VOTES -->\n" +
+    "\n" +
+    "                <h3>{{eventNotifications_count}} VOTES</h3>\n" +
+    "                <div style=\"max-height: 700px;overflow-y: scroll;\">\n" +
+    "                    <div class=\"desc\" ng-repeat=\"notification in eventNotifications | limitTo: 50\">\n" +
+    "                        <div class=\"thumb\">\n" +
+    "                            <span class=\"badge bg-theme\"><i class=\"fa fa-clock-o\"></i></span>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"details\">\n" +
+    "                            <p ng-show=\"notification.voted_by\"><muted><span am-time-ago=\"notification.time\"></span></muted><br/>\n" +
+    "                                <a href>{{notification.voted_by}}</a> voted {{notification.vote_type}} for {{notification.restaurant.name}}<br/>\n" +
+    "                            </p>\n" +
+    "                            <p ng-show=\"notification.added_by\"><muted><span am-time-ago=\"notification.time\"></span></muted><br/>\n" +
+    "                                <a href>{{notification.added_by}}</a> added {{notification.restaurant.name}}<br/>\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
     "                <div class=\"row\">\n" +
-    "                    <div style=\"width: 200px; margin: 20px\" masonry masonry-options=\"{ transitionDuration: '0.4s', isFitWidth:true }\" item-selector=\".card\" class=\"masonry\" ng-cloak>\n" +
+    "                    <div class=\"col-xs-12\" style=\"height: 40px\"></div>\n" +
+    "                </div>\n" +
+    "                <!-- TEAM ONLINE SECTION -->\n" +
+    "                <h3>TEAM JAKT</h3>\n" +
+    "                <div class=\"desc\" ng-repeat=\"user in userList track by $index\" ng-cloak>\n" +
+    "                    <div class=\"thumb\">\n" +
+    "                        <img class=\"img-circle\" ng-src=\"http://fillmurray.com/45/{{($index + 1 * 10) + 30}}\" width=\"45px\" height=\"45px\" align=\"\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"details\">\n" +
+    "                        <p class=\"name\"><a href=\"#\">{{user.email}}</a></p>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-sm-9\">\n" +
+    "                <div\n" +
+    "                    data-ac-chart=\"'bar'\"\n" +
+    "                    data-ac-data=\"data\"\n" +
+    "                    data-ac-config=\"config\"\n" +
+    "                    class=\"chart\" style=\" width: 100%;height: 300px;\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-lg-9 col-md-9\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div masonry\n" +
+    "                         reload-on-show\n" +
+    "                         masonry-options=\"{ transitionDuration: '0.4s', isFitWidth:true }\"\n" +
+    "                         item-selector=\".card\"\n" +
+    "                         class=\"masonry\">\n" +
     "\n" +
     "                        <!-- restaurant PANEL -->\n" +
     "                        <div class=\"card mb\" masonry-brick ng-repeat=\"restaurant in restaurants track by $index\" ng-cloak>\n" +
+    "\n" +
     "                            <div class=\"weather-2 pn\">\n" +
     "                                <div class=\"weather-2-header\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <div class=\"col-sm-6 col-xs-6\">\n" +
-    "                                            <p>{{restaurant.name}} - count</p>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"col-sm-6 col-xs-6 goright\">\n" +
-    "                                            <p class=\"small\">{{date | date:'MMMM d, yyyy'}}</p>\n" +
+    "                                            <p style=\"display: inline-block\">{{restaurant.name}}: <h4 style=\"display: inline-block\">{{restaurant.votes.length}}</h4></p>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
@@ -75,6 +124,7 @@ app.run(["$templateCache", function($templateCache) {
     "                                    </div>\n" +
     "                                    <div class=\"col-sm-6 col-xs-6 goright\">\n" +
     "                                        <a href><h5 ng-click=\"upvote(restaurant.id)\"><i class=\"fa fa-thumbs-up fa-2x\"></i></h5></a>\n" +
+    "                                        <a href><h5 ng-click=\"downvote(restaurant.id)\"><i class=\"fa fa-thumbs-down fa-2x\"></i></h5></a>\n" +
     "                                        <h6><i class=\"fa fa-dollar\"></i>&nbsp;&nbsp;Value: {{ restaurant.value }}</h6>\n" +
     "                                        <h5><i class=\"fa fa-money\"></i>&nbsp;&nbsp;Cash only? {{ restaurant.cash_only }}</h5>\n" +
     "                                    </div>\n" +
@@ -83,43 +133,9 @@ app.run(["$templateCache", function($templateCache) {
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-lg-3 col-md-3 ds\">\n" +
-    "                <!-- VOTES -->\n" +
-    "                <h3>{{eventNotifications_count}} VOTES</h3>\n" +
-    "                <div style=\"max-height: 700px;overflow-y: scroll;\">\n" +
-    "                    <div class=\"desc\" ng-repeat=\"notification in eventNotifications | limitTo: 50\">\n" +
-    "                        <div class=\"thumb\">\n" +
-    "                            <span class=\"badge bg-theme\"><i class=\"fa fa-clock-o\"></i></span>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"details\">\n" +
-    "                            <p ng-show=\"notification.voted_by\"><muted><span am-time-ago=\"notification.time\"></span></muted><br/>\n" +
-    "                                <a href>{{notification.voted_by}}</a> voted for {{notification.restaurant.name}}<br/>\n" +
-    "                            </p>\n" +
-    "                            <p ng-show=\"notification.added_by\"><muted><span am-time-ago=\"notification.time\"></span></muted><br/>\n" +
-    "                                <a href>{{notification.added_by}}</a> added {{notification.restaurant.name}}<br/>\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <br /><br />\n" +
-    "\n" +
-    "            <div class=\"col-lg-3 col-md-3 ds\">\n" +
-    "                <!-- TEAM ONLINE SECTION -->\n" +
-    "                <h3>TEAM JAKT</h3>\n" +
-    "                <div class=\"desc\" ng-repeat=\"user in userList track by $index\" ng-cloak>\n" +
-    "                    <div class=\"thumb\">\n" +
-    "                        <img class=\"img-circle\" ng-src=\"http://fillmurray.com/45/{{($index + 1 * 10) + 30}}\" width=\"45px\" height=\"45px\" align=\"\">\n" +
-    "                    </div>\n" +
-    "                    <div class=\"details\">\n" +
-    "                        <p class=\"name\"><a href=\"#\">{{user.email}}</a></p>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "\n" +
     "        </div><! --/row -->\n" +
     "    </div>\n" +
@@ -134,7 +150,7 @@ try { app = angular.module("templates-app"); }
 catch(err) { app = angular.module("templates-app", []); }
 app.run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/popover-add.tpl.html",
-    "<form class=\"form-login\">\n" +
+    "<form class=\"form-login popper\">\n" +
     "    <h2 class=\"form-login-heading\">Add a new restaurant</h2>\n" +
     "    <div class=\"login-wrap\">\n" +
     "        <input ng-model=\"newRestaurant.name\" type=\"text\" placeholder=\"Some restaurant\" class=\"form-control\" />\n" +
@@ -162,27 +178,30 @@ try { app = angular.module("templates-app"); }
 catch(err) { app = angular.module("templates-app", []); }
 app.run(["$templateCache", function($templateCache) {
   $templateCache.put("user/login.tpl.html",
-    "<h1>Login</h1>\n" +
+    "<h1>&nbsp;</h1>\n" +
     "\n" +
-    "<form class=\"form-login\" ng-submit=\"submitLogin(loginForm)\">\n" +
-    "    <h2 class=\"form-login-heading\">sign in now</h2>\n" +
-    "    <div class=\"login-wrap\">\n" +
-    "        <input type=\"email\" name=\"email\" ng-model=\"loginForm.email\" required=\"required\" class=\"form-control\"/>\n" +
-    "        <br>\n" +
-    "        <input type=\"password\" name=\"password\" ng-model=\"loginForm.password\" required=\"required\" class=\"form-control\"/>\n" +
-    "        <br />\n" +
+    "<div>\n" +
+    "    <form class=\"form-login\" ng-submit=\"submitLogin(loginForm)\" >\n" +
+    "        <h2 class=\"form-login-heading\">sign in now</h2>\n" +
+    "        <div class=\"login-wrap\">\n" +
+    "            <input type=\"email\" placeholder=\"email\" name=\"email\" ng-model=\"loginForm.email\" required=\"required\" class=\"form-control\"/>\n" +
+    "            <br>\n" +
+    "            <input type=\"password\" placeholder=\"password\" name=\"password\" ng-model=\"loginForm.password\" required=\"required\" class=\"form-control\"/>\n" +
+    "            <br />\n" +
     "\n" +
-    "        <button type=\"submit\" class=\"btn btn-theme btn-block\" href=\"index.html\" type=\"submit\"><i class=\"fa fa-lock\"></i> SIGN IN</button>\n" +
-    "        <hr>\n" +
+    "            <button type=\"submit\" class=\"btn btn-theme btn-block\" href=\"index.html\" type=\"submit\"><i class=\"fa fa-lock\"></i> SIGN IN</button>\n" +
+    "            <hr>\n" +
     "\n" +
-    "        <div class=\"registration\">\n" +
-    "            Don't have an account yet?<br/>\n" +
-    "            <a class=\"\" href=\"#\">\n" +
-    "                Create an account\n" +
-    "            </a>\n" +
+    "            <div class=\"registration\">\n" +
+    "                Don't have an account yet?<br/>\n" +
+    "                <a href ng-click=\"showSignupTrue()\">\n" +
+    "                    Create an account\n" +
+    "                </a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "</form>");
+    "    </form>\n" +
+    "</div>\n" +
+    "");
 }]);
 })();
 
@@ -191,26 +210,29 @@ try { app = angular.module("templates-app"); }
 catch(err) { app = angular.module("templates-app", []); }
 app.run(["$templateCache", function($templateCache) {
   $templateCache.put("user/signup.tpl.html",
-    "<h1>Sign up</h1>\n" +
+    "<h1>&nbsp;</h1>\n" +
     "\n" +
-    "<form ng-submit=\"submitRegistration(registrationForm)\" role=\"form\" ng-init=\"registrationForm = {}\">\n" +
-    "    <div class=\"form-group\">\n" +
-    "        <label>email</label>\n" +
-    "        <input type=\"email\" name=\"email\" ng-model=\"registrationForm.email\" required=\"required\" class=\"form-control\"/>\n" +
-    "    </div>\n" +
+    "<div ng-show=\"showSignup\">\n" +
+    "    <form class=\"form-login\" ng-submit=\"submitRegistration(registrationForm)\">\n" +
+    "        <h2 class=\"form-login-heading\">sign up</h2>\n" +
+    "        <div class=\"login-wrap\">\n" +
+    "            <input type=\"email\" placeholder=\"email\" name=\"email\" ng-model=\"registrationForm.email\" required=\"required\" class=\"form-control\"/>\n" +
+    "            <br>\n" +
+    "            <input type=\"password\" placeholder=\"password\" name=\"password\" ng-model=\"registrationForm.password\" required=\"required\" class=\"form-control\"/>\n" +
+    "            <br />\n" +
+    "            <input type=\"password\" placeholder=\"confirm password\" name=\"password_confirmation\" ng-model=\"registrationForm.password_confirmation\" required=\"required\" class=\"form-control\"/>\n" +
+    "            <br />\n" +
+    "            <button type=\"submit\" class=\"btn btn-theme btn-block\">Register</button>\n" +
     "\n" +
-    "    <div class=\"form-group\">\n" +
-    "        <label>password</label>\n" +
-    "        <input type=\"password\" name=\"password\" ng-model=\"registrationForm.password\" required=\"required\" class=\"form-control\"/>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"form-group\">\n" +
-    "        <label>password confirmation</label>\n" +
-    "        <input type=\"password\" name=\"password_confirmation\" ng-model=\"registrationForm.password_confirmation\" required=\"required\" class=\"form-control\"/>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <button type=\"submit\" class=\"btn btn-primary btn-lg\">Register</button>\n" +
-    "</form>\n" +
+    "            <div class=\"registration\">\n" +
+    "                <br/>\n" +
+    "                <a href ng-click=\"showSignupTrue()\">\n" +
+    "                    Just sign in\n" +
+    "                </a>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "</div>\n" +
     "");
 }]);
 })();

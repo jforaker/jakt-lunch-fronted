@@ -1,21 +1,23 @@
-<h1>Login</h1>
+<h1>&nbsp;</h1>
 
-<form class="form-login" ng-submit="submitLogin(loginForm)">
-    <h2 class="form-login-heading">sign in now</h2>
-    <div class="login-wrap">
-        <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control"/>
-        <br>
-        <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control"/>
-        <br />
+<div>
+    <form class="form-login" ng-submit="submitLogin(loginForm)" >
+        <h2 class="form-login-heading">sign in now</h2>
+        <div class="login-wrap">
+            <input type="email" placeholder="email" name="email" ng-model="loginForm.email" required="required" class="form-control"/>
+            <br>
+            <input type="password" placeholder="password" name="password" ng-model="loginForm.password" required="required" class="form-control"/>
+            <br />
 
-        <button type="submit" class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-        <hr>
+            <button type="submit" class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+            <hr>
 
-        <div class="registration">
-            Don't have an account yet?<br/>
-            <a class="" href="#">
-                Create an account
-            </a>
+            <div class="registration">
+                Don't have an account yet?<br/>
+                <a href ng-click="showSignupTrue()">
+                    Create an account
+                </a>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

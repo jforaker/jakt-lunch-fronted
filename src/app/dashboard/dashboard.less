@@ -1620,13 +1620,16 @@ label {
     top: 0 !important;
     left: 0 !important;
     width: 300px;
-//    background-color: #f1c40f;
     text-align: center;
     border-radius: 5px;
 
-    /* needed styles for the overlay */
-    z-index: 10; /* keep on top of other elements on the page */
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+
+
+    &.popper{
+        /* needed styles for the overlay */
+        z-index: 10; /* keep on top of other elements on the page */
+        box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+    }
 
 
     h2.form-login-heading {

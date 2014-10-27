@@ -8769,6 +8769,8 @@ label {
   width: 300px;
   text-align: center;
   border-radius: 5px;
+}
+.form-login.popper {
   /* needed styles for the overlay */
   z-index: 10;
   /* keep on top of other elements on the page */

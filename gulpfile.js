@@ -56,7 +56,9 @@ var gulp =               require('gulp'),
         'vendor/angular-cookies/angular-cookies.js',
         'vendor/angular-pusher/angular-pusher.js',
         'vendor/moment/min/moment.min.js',
-        'vendor/angular-moment/angular-moment.js'
+        'vendor/angular-moment/angular-moment.js',
+        'vendor/d3/d3.js',
+        'vendor/angular-charts/dist/angular-charts.js'
 
     ],
 

@@ -1,32 +1,36 @@
 <header class="header black-bg">
     <a href class="logo"><b>LUNCH APP</b></a>
-
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
-            <li><a class="logout" href ng-click="handleSignOutBtnClick()">Logout</a></li>
+            <li><a ng-hide="!user.signedIn" class="logout" href ng-click="handleSignOutBtnClick()">Logout</a></li>
         </ul>
     </div>
-
-    <div style="width: 500px" ng-show="!user.signedIn">
-        <ng-include src="'user/login.tpl.html'"></ng-include>
-    </div>
-
-    <div style="width: 500px" ng-show="!user.signedIn">
-        <ng-include src="'user/signup.tpl.html'"></ng-include>
-    </div>
-
 </header>
 
+<div ng-show="!user.signedIn">
+    <div class="row">
+        <div class="col-md-6">
+            <div style="width: 500px">
+                <ng-include src="'user/login.tpl.html'"></ng-include>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div>
+                <ng-include src="'user/signup.tpl.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section id="dashboard" ng-show="user.signedIn">
     <div class="main-container">
-
-    <div class="row">
-        <br><br><br>
+        <div class="row" style="margin-left: 0;margin-right: 0">
+            <br><br><br>
 
             <!--<div><pre>{{eventNotifications | json}}</pre></div>-->
 
-            <div class="col-sm-12">
+            <div class="col-sm-9">
                 <div class="row">
                     <div class="col-md-6">
                         <h1>RESTAURANTS</h1>
@@ -41,21 +45,66 @@
                 </div>
             </div>
 
-            <div ng-repeat="activity in activities" ng-animate=" 'animate' ">[{{activity.timestamp | date:'mediumTime'}}]{{activity.message}}</div>
-            <div class="col-lg-9 col-md-9 main-chart">
+            <div class="col-lg-3 col-md-3 ds pull-right">
+                <!-- VOTES -->
+
+                <h3>{{eventNotifications_count}} VOTES</h3>
+                <div style="max-height: 700px;overflow-y: scroll;">
+                    <div class="desc" ng-repeat="notification in eventNotifications | limitTo: 50">
+                        <div class="thumb">
+                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                            <p ng-show="notification.voted_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
+                                <a href>{{notification.voted_by}}</a> voted {{notification.vote_type}} for {{notification.restaurant.name}}<br/>
+                            </p>
+                            <p ng-show="notification.added_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
+                                <a href>{{notification.added_by}}</a> added {{notification.restaurant.name}}<br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
-                    <div style="width: 200px; margin: 20px" masonry masonry-options="{ transitionDuration: '0.4s', isFitWidth:true }" item-selector=".card" class="masonry" ng-cloak>
+                    <div class="col-xs-12" style="height: 40px"></div>
+                </div>
+                <!-- TEAM ONLINE SECTION -->
+                <h3>TEAM JAKT</h3>
+                <div class="desc" ng-repeat="user in userList track by $index" ng-cloak>
+                    <div class="thumb">
+                        <img class="img-circle" ng-src="http://fillmurray.com/45/{{($index + 1 * 10) + 30}}" width="45px" height="45px" align="">
+                    </div>
+                    <div class="details">
+                        <p class="name"><a href="#">{{user.email}}</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <div
+                    data-ac-chart="'bar'"
+                    data-ac-data="data"
+                    data-ac-config="config"
+                    class="chart" style=" width: 100%;height: 300px;">
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-9">
+                <div class="row">
+                    <div masonry
+                         reload-on-show
+                         masonry-options="{ transitionDuration: '0.4s', isFitWidth:true }"
+                         item-selector=".card"
+                         class="masonry">
 
                         <!-- restaurant PANEL -->
                         <div class="card mb" masonry-brick ng-repeat="restaurant in restaurants track by $index" ng-cloak>
+
                             <div class="weather-2 pn">
                                 <div class="weather-2-header">
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-6">
-                                            <p>{{restaurant.name}} - count</p>
-                                        </div>
-                                        <div class="col-sm-6 col-xs-6 goright">
-                                            <p class="small">{{date | date:'MMMM d, yyyy'}}</p>
+                                            <p style="display: inline-block">{{restaurant.name}}: <h4 style="display: inline-block">{{restaurant.votes.length}}</h4></p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,6 +119,7 @@
                                     </div>
                                     <div class="col-sm-6 col-xs-6 goright">
                                         <a href><h5 ng-click="upvote(restaurant.id)"><i class="fa fa-thumbs-up fa-2x"></i></h5></a>
+                                        <a href><h5 ng-click="downvote(restaurant.id)"><i class="fa fa-thumbs-down fa-2x"></i></h5></a>
                                         <h6><i class="fa fa-dollar"></i>&nbsp;&nbsp;Value: {{ restaurant.value }}</h6>
                                         <h5><i class="fa fa-money"></i>&nbsp;&nbsp;Cash only? {{ restaurant.cash_only }}</h5>
                                     </div>
@@ -78,43 +128,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="col-lg-3 col-md-3 ds">
-                <!-- VOTES -->
-                <h3>{{eventNotifications_count}} VOTES</h3>
-                <div style="max-height: 700px;overflow-y: scroll;">
-                    <div class="desc" ng-repeat="notification in eventNotifications | limitTo: 50">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p ng-show="notification.voted_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
-                                <a href>{{notification.voted_by}}</a> voted for {{notification.restaurant.name}}<br/>
-                            </p>
-                            <p ng-show="notification.added_by"><muted><span am-time-ago="notification.time"></span></muted><br/>
-                                <a href>{{notification.added_by}}</a> added {{notification.restaurant.name}}<br/>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 ds">
-                <!-- TEAM ONLINE SECTION -->
-                <h3>TEAM JAKT</h3>
-                <div class="desc" ng-repeat="user in userList track by $index" ng-cloak>
-                    <div class="thumb">
-                        <img class="img-circle" ng-src="http://fillmurray.com/45/{{($index + 1 * 10) + 30}}" width="45px" height="45px" align="">
-                    </div>
-                    <div class="details">
-                        <p class="name"><a href="#">{{user.email}}</a></p>
-                    </div>
-                </div>
-            </div>
 
         </div><! --/row -->
     </div>

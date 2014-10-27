@@ -3,18 +3,12 @@ angular.module( 'ai', [
     'templates-app',
     'templates-common',
 
-    //'ai.common.directives.container',
     'ai.common.directives.dropdown',
-    //'ai.common.directives.show-hide',
     'ai.common.directives.popover',
-    //'ai.common.directives.svg',
-
     'ai.common.services.utils',
     'ai.common.filters',
-
     'ai.dashboard',
     'ai.header',
-
     'ai.search',
     'ai.user',
     'ui.router',
@@ -28,7 +22,8 @@ angular.module( 'ai', [
     'ng-token-auth',
     'ngCookies',
     'doowb.angular-pusher',
-    'angularMoment'
+    'angularMoment',
+    'angularCharts'
 
 ])
 
@@ -42,7 +37,16 @@ angular.module( 'ai', [
         });
 
         $authProvider.configure({
-            apiUrl: 'http://localhost:3000/api'  //'https://jakt-lunch.herokuapp.com/api'
+            apiUrl: 'http://localhost:3000/api',  //'https://jakt-lunch.herokuapp.com/api'
+            handleLoginResponse: function(response) {
+                return response.data;
+            },
+            handleAccountResponse: function(response) {
+                return response.data;
+            },
+            handleTokenValidationResponse: function(response) {
+                return response.data;
+            }
         });
 
         PusherServiceProvider
