@@ -8071,10 +8071,14 @@ ul.top-menu  > li  > a:focus {
 }
 .card {
   display: none;
+  max-width: 335px;
+  min-width: 335px;
+  min-height: 200px;
 }
 .card.loaded {
   display: block;
   min-width: 335px;
+  max-width: 335px;
   min-height: 200px;
   margin-right: 10px;
   margin-top: 10px;
