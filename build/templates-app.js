@@ -97,7 +97,6 @@ app.run(["$templateCache", function($templateCache) {
     "            <div class=\"col-lg-9 col-md-9\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div masonry\n" +
-    "                         reload-on-show\n" +
     "                         masonry-options=\"{ transitionDuration: '0.4s', isFitWidth:true }\"\n" +
     "                         item-selector=\".card\"\n" +
     "                         class=\"masonry\">\n" +
