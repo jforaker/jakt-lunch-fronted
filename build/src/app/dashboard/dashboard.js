@@ -40,7 +40,7 @@ angular.module( 'ai.dashboard', [
         $scope.restaurants = rests;
 
         _.forEach($scope.restaurants, function (restaurant) {
-            restaurant.votes = [];
+            restaurant.votes = '';
         });
 
         console.log('$scope.restaurants ', $scope.restaurants);
@@ -101,7 +101,7 @@ angular.module( 'ai.dashboard', [
             console.log('votes:updated event notification', notification);
             $scope.eventNotifications_count++;
             $scope.eventNotifications.unshift(notification);
-            viewCount(notification.restaurant.id);
+            viewCount(notification.restaurant.id, notification.vote);
             chartData.pushData(notification.restaurant.id, notification.vote);
         });
 
@@ -124,11 +124,12 @@ angular.module( 'ai.dashboard', [
             console.log('Unsubscribed from restaurants');
         });
 
-        var viewCount = function (id) {
-            console.log('id =', id);
+        var viewCount = function (id, vote) {
+            console.log('vote =', vote);
             angular.forEach($scope.restaurants, function (rest) {
                 if(rest.id == id){
-                    rest.votes.push(id);
+                    console.log('rest.votes ', rest.votes);
+                    return rest.votes = vote;
                 }
             });
 
@@ -156,7 +157,6 @@ angular.module( 'ai.dashboard', [
             },
             "innerRadius": 0,
             "lineLegend": "lineEnd"
-            
         };
 
         var chartData = {

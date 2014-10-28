@@ -63,8 +63,8 @@
   <script src="/src/common/directives/spark-line/spark-line.js"></script>
   <script src="/src/common/directives/study-plan/study-plan.js"></script>
   <script src="/src/common/directives/svg/svg.js"></script>
-  <script src="/src/common/directives/container/container.js"></script>
   <script src="/src/common/directives/timer/timer.js"></script>
+  <script src="/src/common/directives/container/container.js"></script>
   <script src="/src/common/services/utils/utils.js"></script>
   <script src="/templates-common.js"></script>
   <script src="/templates-app.js"></script>
@@ -75,15 +75,11 @@
 <div class="svg-hidden">
   <!-- inject:svg --><svg xmlns="http://www.w3.org/2000/svg"/><!-- endinject -->
 </div>
-<section id="container" >
 
-  <section class="wrapper">
+  <div class="container-fluid">
+    <div ui-view="main"></div>
+  </div>
 
-    <div class="" ui-view="main"></div>
-
-  </section>
-
-  <!--footer start-->
   <footer class="site-footer">
     <div class="text-center">
       2014 - jake
@@ -92,8 +88,6 @@
       </a>
     </div>
   </footer>
-  <!--footer end-->
-</section>
 
 
 

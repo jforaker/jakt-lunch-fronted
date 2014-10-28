@@ -23,23 +23,26 @@
     </div>
 </div>
 
-<section id="dashboard" ng-show="user.signedIn">
-    <div class="main-container">
+<section ng-show="user.signedIn">
+    <div>
         <div class="row" style="margin-left: 0;margin-right: 0">
             <br><br><br>
 
             <!--<div><pre>{{eventNotifications | json}}</pre></div>-->
 
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <div class="row">
                     <div class="col-md-6">
                         <h1>RESTAURANTS</h1>
                     </div>
                     <div class="col-md-6">
                         <div style="height: 0px;width: 100%">
-                            <a href class="icon-add" ai-popover template="dashboard/popover-add.tpl.html" placement="">
-                                <i class="fa fa-plus-circle" style="font-size: 35px;"></i>  <h1 style="display: inline-block">Add new restaurant</h1>
-                            </a>
+                            <h1>
+                                <a href class="icon-add" ai-popover template="dashboard/popover-add.tpl.html" placement="">
+                                    <i class="fa fa-plus-circle" style="font-size: 35px;"></i>  <h4 style="display: inline-block;margin: 0;vertical-align: middle;">Add new restaurant</h4>
+                                </a>
+                            </h1>
+
                         </div>
                     </div>
                 </div>
@@ -68,6 +71,7 @@
                 <div class="row">
                     <div class="col-xs-12" style="height: 40px"></div>
                 </div>
+
                 <!-- TEAM ONLINE SECTION -->
                 <h3>TEAM JAKT</h3>
                 <div class="desc" ng-repeat="user in userList track by $index" ng-cloak>
@@ -92,10 +96,9 @@
             <div class="col-lg-9 col-md-9">
                 <div class="row">
                     <div masonry
-                         reload-on-show
-                         masonry-options="{ transitionDuration: '0.4s', isFitWidth:true }"
+                         masonry-options="{ transitionDuration: '0.4s' }"
                          item-selector=".card"
-                         class="masonry">
+                         class="masonry col-sm-12">
 
                         <!-- restaurant PANEL -->
                         <div class="card mb" masonry-brick ng-repeat="restaurant in restaurants track by $index" ng-cloak>
@@ -103,8 +106,8 @@
                             <div class="weather-2 pn">
                                 <div class="weather-2-header">
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-6">
-                                            <p style="display: inline-block">{{restaurant.name}}: <h4 style="display: inline-block">{{restaurant.votes.length}}</h4></p>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <h4 style="display: inline-block">{{restaurant.name}}: {{restaurant.votes}}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -129,10 +132,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-        </div><! --/row -->
+        </div>
     </div>
 </section>
 

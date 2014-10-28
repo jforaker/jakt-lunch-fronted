@@ -20,16 +20,23 @@ a, a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
+a {
+    color: @buttondarkblue;
+
+    &:hover{
+        color: lighten(@buttondarkblue, 20%);
+    }
+}
 ::selection {
-    background: #0B5F6B;
+    background: @buttondarkblue;
     color: #fff;
 }
 ::-moz-selection {
-    background: #0B5F6B;
+    background: @buttondarkblue;
     color: #fff;
 }
 .fa{
-    color: #0B5F6B;
+    color: @buttondarkblue;
 }
 #container {
     width: 100%;
