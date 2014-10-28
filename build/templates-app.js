@@ -89,14 +89,14 @@ app.run(["$templateCache", function($templateCache) {
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-9\">\n" +
-    "                <div\n" +
-    "                    data-ac-chart=\"'bar'\"\n" +
-    "                    data-ac-data=\"data\"\n" +
-    "                    data-ac-config=\"config\"\n" +
-    "                    class=\"chart\" style=\" width: 100%;height: 300px;\">\n" +
-    "                </div>\n" +
-    "            </div>\n" +
+    "            <!--<div class=\"col-sm-9\">-->\n" +
+    "                <!--<div-->\n" +
+    "                    <!--data-ac-chart=\"'bar'\"-->\n" +
+    "                    <!--data-ac-data=\"data\"-->\n" +
+    "                    <!--data-ac-config=\"config\"-->\n" +
+    "                    <!--class=\"chart\" style=\" width: 100%;height: 300px;\">-->\n" +
+    "                <!--</div>-->\n" +
+    "            <!--</div>-->\n" +
     "\n" +
     "            <div class=\"col-lg-9 col-md-9\">\n" +
     "                <div class=\"row\">\n" +
