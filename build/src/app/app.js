@@ -8,8 +8,6 @@ angular.module( 'ai', [
     'ai.common.services.utils',
     'ai.common.filters',
     'ai.dashboard',
-    'ai.header',
-    'ai.search',
     'ai.user',
     'ui.router',
     'mgcrea.ngStrap',

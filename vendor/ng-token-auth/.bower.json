@@ -40,5 +40,6 @@
   "_source": "git://github.com/lynndylanhurley/ng-token-auth.git",
   "_target": "~0.0.23",
   "_originalSource": "ng-token-auth",
-  "_direct": true
+  "_direct": true,
+  "_originalSource": "ng-token-auth"
 }

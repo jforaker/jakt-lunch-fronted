@@ -28,8 +28,8 @@ app.run(["$templateCache", function($templateCache) {
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<section id=\"dashboard\" ng-show=\"user.signedIn\">\n" +
-    "    <div class=\"main-container\">\n" +
+    "<section ng-show=\"user.signedIn\">\n" +
+    "    <div>\n" +
     "        <div class=\"row\" style=\"margin-left: 0;margin-right: 0\">\n" +
     "            <br><br><br>\n" +
     "\n" +
@@ -42,9 +42,12 @@ app.run(["$templateCache", function($templateCache) {
     "                    </div>\n" +
     "                    <div class=\"col-md-6\">\n" +
     "                        <div style=\"height: 0px;width: 100%\">\n" +
-    "                            <a href class=\"icon-add\" ai-popover template=\"dashboard/popover-add.tpl.html\" placement=\"\">\n" +
-    "                                <i class=\"fa fa-plus-circle\" style=\"font-size: 35px;\"></i>  <h1 style=\"display: inline-block\">Add new restaurant</h1>\n" +
-    "                            </a>\n" +
+    "                            <h1>\n" +
+    "                                <a href class=\"icon-add\" ai-popover template=\"dashboard/popover-add.tpl.html\" placement=\"\">\n" +
+    "                                    <i class=\"fa fa-plus-circle\" style=\"font-size: 35px;\"></i>  <h4 style=\"display: inline-block;margin: 0;vertical-align: middle;\">Add new restaurant</h4>\n" +
+    "                                </a>\n" +
+    "                            </h1>\n" +
+    "\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -73,6 +76,7 @@ app.run(["$templateCache", function($templateCache) {
     "                <div class=\"row\">\n" +
     "                    <div class=\"col-xs-12\" style=\"height: 40px\"></div>\n" +
     "                </div>\n" +
+    "\n" +
     "                <!-- TEAM ONLINE SECTION -->\n" +
     "                <h3>TEAM JAKT</h3>\n" +
     "                <div class=\"desc\" ng-repeat=\"user in userList track by $index\" ng-cloak>\n" +
@@ -85,14 +89,14 @@ app.run(["$templateCache", function($templateCache) {
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
-    //"            <div class=\"col-sm-9\">\n" +
-    //"                <div\n" +
-    //"                    data-ac-chart=\"'bar'\"\n" +
-    //"                    data-ac-data=\"data\"\n" +
-    //"                    data-ac-config=\"config\"\n" +
-    //"                    class=\"chart\" style=\" width: 100%;height: 300px;\">\n" +
-    //"                </div>\n" +
-    //"            </div>\n" +
+    "            <div class=\"col-sm-9\">\n" +
+    "                <div\n" +
+    "                    data-ac-chart=\"'bar'\"\n" +
+    "                    data-ac-data=\"data\"\n" +
+    "                    data-ac-config=\"config\"\n" +
+    "                    class=\"chart\" style=\" width: 100%;height: 300px;\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "\n" +
     "            <div class=\"col-lg-9 col-md-9\">\n" +
     "                <div class=\"row\">\n" +
@@ -107,13 +111,13 @@ app.run(["$templateCache", function($templateCache) {
     "                            <div class=\"weather-2 pn\">\n" +
     "                                <div class=\"weather-2-header\">\n" +
     "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"col-sm-6 col-xs-6\">\n" +
-    "                                            <p style=\"display: inline-block\">{{restaurant.name}}: <h4 style=\"display: inline-block\">{{restaurant.votes.length}}</h4></p>\n" +
+    "                                        <div class=\"col-sm-12 col-xs-12\">\n" +
+    "                                            <h4 style=\"display: inline-block\">{{restaurant.name}}: {{restaurant.votes}}</h4>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row centered\">\n" +
-    //"                                    <img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">\n" +
+    "                                    <img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">\n" +
     "                                </div>\n" +
     "                                <div class=\"row data\">\n" +
     "                                    <div class=\"col-sm-6 col-xs-6 goleft\">\n" +
@@ -133,10 +137,7 @@ app.run(["$templateCache", function($templateCache) {
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "        </div><! --/row -->\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</section>\n" +
     "\n" +
