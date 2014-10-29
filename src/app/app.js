@@ -34,7 +34,7 @@ angular.module( 'ai', [
         });
 
         $authProvider.configure({
-            apiUrl: 'https://jakt-lunch.herokuapp.com/api',  //'http://localhost:3000/api',  //
+            apiUrl: 'https://jakt-lunch-api.herokuapp.com/api',  //'http://localhost:3000/api',  //
             handleLoginResponse: function(response) {
                 return response.data;
             },
