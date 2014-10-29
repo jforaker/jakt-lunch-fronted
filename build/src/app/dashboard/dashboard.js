@@ -198,7 +198,7 @@ angular.module( 'ai.dashboard', [
 
     .factory('Restaurants', function ($http) {
         var rest = {};
-        var url = 'https://jakt-lunch.herokuapp.com/api/restaurants'; // 'http://localhost:3000/api/restaurants';  //'https://jakt-lunch.herokuapp.com/api/restaurants';
+        var url = 'https://jakt-lunch-api.herokuapp.com/api/restaurants'; // 'http://localhost:3000/api/restaurants';  //'https://jakt-lunch.herokuapp.com/api/restaurants';
         rest.all = [];
         rest.upvote = function (id) {
             return $http.put(url + '/' + id + '/upvote');
@@ -218,7 +218,7 @@ angular.module( 'ai.dashboard', [
 
     .factory('Users', function ($http) {
         var rest = {};
-        var url = 'https://jakt-lunch.herokuapp.com/api/users'; //'http://localhost:3000/api/users';
+        var url = 'https://jakt-lunch-api.herokuapp.com/api/users'; //'http://localhost:3000/api/users';
         rest.all = [];
         rest.getAll = function () {
             return $http.get(url);
