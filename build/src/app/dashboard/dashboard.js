@@ -130,7 +130,12 @@ angular.module( 'ai.dashboard', [
                 if(rest.id == id){
                     console.log('rest.votes ', rest.votes);
                     //return rest.votes = vote;
-                    return rest.votes.push(vote);
+
+                    if(vote == 'up'){
+                        rest.votes.push(vote);
+                    } else {
+                        rest.votes.splice(0, rest.votes.length -1)
+                    }
 
                 }
             });
