@@ -2,7 +2,7 @@
 angular.module( 'ai', [
     'templates-app',
     'templates-common',
-
+    'ai.settings.api',
     'ai.common.directives.dropdown',
     'ai.common.directives.popover',
     'ai.common.services.utils',
@@ -25,7 +25,7 @@ angular.module( 'ai', [
 
 ])
 
-    .config( function myAppConfig ( $locationProvider, $popoverProvider, $stateProvider, $urlRouterProvider, $authProvider, PusherServiceProvider ) {
+    .config( function myAppConfig ( $locationProvider, api, $popoverProvider, $stateProvider, $urlRouterProvider, $authProvider, PusherServiceProvider ) {
         $urlRouterProvider.otherwise( '/dashboard' );
 
         angular.extend($popoverProvider.defaults, {
@@ -34,7 +34,7 @@ angular.module( 'ai', [
         });
 
         $authProvider.configure({
-            apiUrl: 'https://jakt-lunch-api.herokuapp.com/api',  //'http://localhost:3000/api',  //
+            apiUrl: api.endpoint,
             handleLoginResponse: function(response) {
                 return response.data;
             },

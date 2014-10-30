@@ -40,7 +40,7 @@ angular.module( 'ai.dashboard', [
         $scope.restaurants = rests;
 
         _.forEach($scope.restaurants, function (restaurant) {
-            restaurant.votes = '';
+            restaurant.votes = [] ;
         });
 
         console.log('$scope.restaurants ', $scope.restaurants);
@@ -129,7 +129,9 @@ angular.module( 'ai.dashboard', [
             angular.forEach($scope.restaurants, function (rest) {
                 if(rest.id == id){
                     console.log('rest.votes ', rest.votes);
-                    return rest.votes = vote;
+                    //return rest.votes = vote;
+                    return rest.votes.push(vote);
+
                 }
             });
 
@@ -196,9 +198,9 @@ angular.module( 'ai.dashboard', [
     })
 
 
-    .factory('Restaurants', function ($http) {
+    .factory('Restaurants', function ($http, api) {
         var rest = {};
-        var url = 'https://jakt-lunch-api.herokuapp.com/api/restaurants'; // 'http://localhost:3000/api/restaurants';  //'https://jakt-lunch.herokuapp.com/api/restaurants';
+        var url = api.endpoint + '/restaurants'; // 'http://localhost:3000/api/restaurants';  //'https://jakt-lunch.herokuapp.com/api/restaurants';
         rest.all = [];
         rest.upvote = function (id) {
             return $http.put(url + '/' + id + '/upvote');
@@ -216,9 +218,9 @@ angular.module( 'ai.dashboard', [
         return rest;
     })
 
-    .factory('Users', function ($http) {
+    .factory('Users', function ($http, api) {
         var rest = {};
-        var url = 'https://jakt-lunch-api.herokuapp.com/api/users'; //'http://localhost:3000/api/users';
+        var url = api.endpoint + '/users'; //'http://localhost:3000/api/users';
         rest.all = [];
         rest.getAll = function () {
             return $http.get(url);

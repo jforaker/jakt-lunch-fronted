@@ -101,6 +101,7 @@ app.run(["$templateCache", function($templateCache) {
     "            <div class=\"col-lg-9 col-md-9\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div masonry\n" +
+    "                         reload-on-show\n" +
     "                         masonry-options=\"{ transitionDuration: '0.4s' }\"\n" +
     "                         item-selector=\".card\"\n" +
     "                         class=\"masonry col-sm-12\">\n" +
@@ -112,12 +113,12 @@ app.run(["$templateCache", function($templateCache) {
     "                                <div class=\"weather-2-header\">\n" +
     "                                    <div class=\"row\">\n" +
     "                                        <div class=\"col-sm-12 col-xs-12\">\n" +
-    "                                            <h4 style=\"display: inline-block\">{{restaurant.name}}: {{restaurant.votes}}</h4>\n" +
+    "                                            <h4 style=\"display: inline-block\">{{restaurant.name}}: {{restaurant.votes.length}}</h4>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"row centered\">\n" +
-    "                                    <img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">\n" +
+    "                                    <!--<img ng-src=\"http://lorempixel.com/100/100/food/{{$index}}\" class=\"img-circle\" width=\"120\">-->\n" +
     "                                </div>\n" +
     "                                <div class=\"row data\">\n" +
     "                                    <div class=\"col-sm-6 col-xs-6 goleft\">\n" +
