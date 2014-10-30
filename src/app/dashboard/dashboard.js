@@ -134,7 +134,7 @@ angular.module( 'ai.dashboard', [
                     if(vote == 'up'){
                         rest.votes.push(vote);
                     } else {
-                        rest.votes.splice(0, rest.votes.length -1)
+                        rest.votes = rest.votes.splice(1, rest.votes.length)
                     }
 
                 }
